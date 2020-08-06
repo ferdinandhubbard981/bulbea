@@ -24,9 +24,10 @@ class RNN(ANN):
                  optimizer  = 'rmsprop'):
         self.model = Sequential()
         self.model.add(cell(
-            units            = sizes[1],
+            
             input_dim        = sizes[0],
-            return_sequences = True
+            return_sequences = True,
+            units            = sizes[1]
         ))
 
         for i in range(2, len(sizes) - 1):
