@@ -25,12 +25,12 @@ class RNN(ANN):
         self.model = Sequential()
         self.model.add(cell(
             units            = sizes[1],
-            #input_dim        = sizes[0],
+            input_dim        = sizes[0],
             return_sequences = True
         ))
 
         for i in range(2, len(sizes) - 1):
-            self.model.add(cell(sizes[i], return_sequences = False))
+            self.model.add(cell(sizes[i + 1], sizes[i], return_sequences = False))
             self.model.add(core.Dropout(dropout))
 
         self.model.add(core.Dense(sizes[-1]))
