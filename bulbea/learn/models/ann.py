@@ -24,8 +24,8 @@ class RNN(ANN):
                  optimizer  = 'rmsprop'):
         self.model = Sequential()
         self.model.add(cell(
+            units            = sizes[1],
             input_dim        = sizes[0],
-            output_dim       = sizes[1],
             return_sequences = True
         ))
 
@@ -33,7 +33,7 @@ class RNN(ANN):
             self.model.add(cell(sizes[i], return_sequences = False))
             self.model.add(core.Dropout(dropout))
 
-        self.model.add(core.Dense(output_dim = sizes[-1]))
+        self.model.add(core.Dense(units = sizes[-1]))
         self.model.add(core.Activation(activation))
 
         self.model.compile(loss = loss, optimizer = optimizer)
